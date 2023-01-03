@@ -4,7 +4,7 @@ import pytest
 @pytest.fixture
 def fake():
     from faker import Faker
-    from faker_clickstream import ClickstreamProvider
+    from faker_mobile_bank_clickstream import ClickstreamProvider
 
     fake = Faker()
     fake.add_provider(ClickstreamProvider)

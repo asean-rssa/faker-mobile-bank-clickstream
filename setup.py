@@ -4,16 +4,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="faker_clickstream",
-    version="0.1.1",
-    author="Christos Natsis",
-    author_email="christos_na@hotmail.com",
-    description="Clickstream Faker Provider for Python.",
+    name="faker_mobile_bank_clickstream",
+    version="0.0.1",
+    description="Mobile Banking Clickstream Faker Provider for Python.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/cnatsis/faker-clickstream",
+    url="https://github.com/manganganath/faker-mobile-bank-clickstream",
     project_urls={
-        "Issues Tracker": "https://github.com/cnatsis/faker-clickstream/issues",
+        "Issues Tracker": "https://github.com/manganganath/faker-mobile-bank-clickstream/issues",
     },
     install_requires=['Faker'],
     zip_safe=True,
@@ -26,7 +24,7 @@ setuptools.setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    packages=["faker_clickstream"],
+    packages=["faker_mobile_bank_clickstream"],
     python_requires=">=3.6",
     license='Apache License, Version 2.0',
 )
