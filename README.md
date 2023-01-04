@@ -1,6 +1,5 @@
-# Clickstream Faker Provider for Python
+# Mobile Banking Clickstream Faker Provider for Python
 
-- [Mobile Banking Clickstream Faker Provider for Python](#mobile-bank-clickstream-faker-provider-for-python)
   * [Purpose](#purpose)
   * [Installation](#installation)
   * [Usage](#usage)
@@ -102,6 +101,6 @@ provide a more real representation of a web session flow:
 - `FillTransferDetails`
 - `CompleteTransfer`
 
-## Contributing
+## Citation
 
-Feel free to support this project and contribute! Support this project by giving a star!
+Nuwan Ganganath, "Mobile Banking Clickstream Faker Provider for Python", 2023, Github, https://github.com/manganganath/faker-mobile-bank-clickstream
