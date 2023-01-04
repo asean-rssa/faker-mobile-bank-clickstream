@@ -1,18 +1,15 @@
-import setuptools
+from distutils.core import setup
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
-
-setuptools.setup(
-    name="faker_mobile_bank_clickstream",
-    version="0.0.1",
-    description="Mobile Banking Clickstream Faker Provider for Python.",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/manganganath/faker-mobile-bank-clickstream",
-    project_urls={
-        "Issues Tracker": "https://github.com/manganganath/faker-mobile-bank-clickstream/issues",
-    },
+setup(
+    name = 'faker_mobile_bank_clickstream',
+    packages = ['faker_mobile_bank_clickstream'],
+    version = '0.0.1',  
+    description = 'Mobile Banking Clickstream Faker Provider for Python',
+    author = '',
+    author_email = '',
+    url = 'https://github.com/manganganath/faker-mobile-bank-clickstream',
+    download_url = 'https://github.com/manganganath/faker-mobile-bank-clickstream',
+    keywords = ['clickstream', 'bank', 'mobile', 'app'],
     install_requires=['Faker'],
     zip_safe=True,
     classifiers=[
@@ -24,7 +21,6 @@ setuptools.setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    packages=["faker_mobile_bank_clickstream"],
     python_requires=">=3.6",
     license='Apache License, Version 2.0',
 )
