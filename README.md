@@ -47,7 +47,7 @@ An example response object is the below:
     "user_agent": "Mozilla/5.0 (iPad; CPU OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) CriOS/45.0.2454.68 Mobile/11D257 Safari/9537.53",
     "session_id": "d5cba274f7724780d1ed2b60650101892260748df21b0e2fb8b2b2fd88cedf23",
     "event_time": "28/03/2022 23:09:48.360212",
-    "event_name": "AddToCart"
+    "event_name": "Login"
   },
   {
     "ip": "85.59.39.221",
@@ -55,7 +55,7 @@ An example response object is the below:
     "user_agent": "Mozilla/5.0 (iPad; CPU OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) CriOS/45.0.2454.68 Mobile/11D257 Safari/9537.53",
     "session_id": "d5cba274f7724780d1ed2b60650101892260748df21b0e2fb8b2b2fd88cedf23",
     "event_time": "28/03/2022 23:14:13.360227",
-    "event_name": "AddToCart"
+    "event_name": "SelectTransfer"
   },
   {
     "ip": "85.59.39.221",
@@ -63,7 +63,7 @@ An example response object is the below:
     "user_agent": "Mozilla/5.0 (iPad; CPU OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) CriOS/45.0.2454.68 Mobile/11D257 Safari/9537.53",
     "session_id": "d5cba274f7724780d1ed2b60650101892260748df21b0e2fb8b2b2fd88cedf23",
     "event_time": "28/03/2022 23:17:49.360241",
-    "event_name": "Checkout"
+    "event_name": "FillTransferDetails"
   },
   {
     "ip": "85.59.39.221",
@@ -71,7 +71,7 @@ An example response object is the below:
     "user_agent": "Mozilla/5.0 (iPad; CPU OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) CriOS/45.0.2454.68 Mobile/11D257 Safari/9537.53",
     "session_id": "d5cba274f7724780d1ed2b60650101892260748df21b0e2fb8b2b2fd88cedf23",
     "event_time": "28/03/2022 23:22:15.360252",
-    "event_name": "Search"
+    "event_name": "CompleteTransfer"
   }
 ]
 ```
