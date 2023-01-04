@@ -4,7 +4,6 @@
   * [Installation](#installation)
   * [Usage](#usage)
   * [Features](#features)
-  * [Contributing](#contributing)
 
 ## Purpose
 
