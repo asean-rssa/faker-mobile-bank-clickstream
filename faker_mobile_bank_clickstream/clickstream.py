@@ -6,7 +6,7 @@ from random import choice, randint
 
 from faker.providers import BaseProvider
 
-from faker_mobile_bank_clickstream.event_constants import weighted_events, events
+from faker_mobile_bank_clickstream.event_constants import event_details, events
 from faker_mobile_bank_clickstream.ip import ip_list
 from faker_mobile_bank_clickstream.user_agents import user_agents
 
@@ -38,15 +38,6 @@ class ClickstreamProvider(BaseProvider):
         """
         return choice(events)
 
-    def weighted_event(self):
-        """
-        Generate a random event object according to popularity weight. Higher popularity increases the
-        chances of occurrence.
-
-        :return: Event object (JSON)
-        """
-        return random.choices(weighted_events, weights=[e['popularity'] for e in weighted_events], k=1)[0]
-
     def session_clickstream(self, rand_session_max_size: int = 25):
         """
         Generate session clickstream events.
@@ -64,7 +55,7 @@ class ClickstreamProvider(BaseProvider):
         ip = _get_ip()
         random_session_size = randint(1, rand_session_max_size)
         incremental_delta_delay = randint(1, 60)
-        first_events = [e['name'] for e in weighted_events if e['dependsOn']==['Login']]
+        first_events = [e['name'] for e in event_details if e['dependsOn']==['Login']]
 
         for s in range(random_session_size):
             # Mock time delay between events
@@ -76,16 +67,16 @@ class ClickstreamProvider(BaseProvider):
                 if session_event_names[-1] == 'Logout':
                     break       
 
-            # Fetch weighted event
-            event = self.weighted_event()
-            # First event should be Login event
+            # Fetch a random event
+            event = random.choice(event_details)
+            # Add a mock first_events event
             if len(session_events)==0:
                 event['name'] = 'Login'            
 
             if event['name'] == 'Login' and len(session_events)>0:
                 # or Login exists in session, discard Login event
                 # Add a mock ViewHome event
-                event['name'] = 'ViewHome'
+                event['name'] = random.choice(first_events)
 
             # Handle event dependencies
             if len(event['dependsOn']) and len(session_events)>0:
@@ -96,7 +87,11 @@ class ClickstreamProvider(BaseProvider):
             # Same event shouldn't repeat consecutively 
             if len(session_event_names)>0:
                 if session_event_names[-1] == event['name']:
-                    continue                             
+                    continue                          
+
+            # Any event shouldn't occur more then max allowed 
+            if session_event_names.count(event['name'])>=int(event['maxCount']):
+                continue
 
             # Construct final event object
             r = {
