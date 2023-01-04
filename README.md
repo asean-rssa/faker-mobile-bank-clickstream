@@ -100,7 +100,3 @@ provide a more real representation of a web session flow:
 - `SubmitLoanApplication`
 - `FillTransferDetails`
 - `CompleteTransfer`
-
-## Citation
-
-Nuwan Ganganath, "Mobile Banking Clickstream Faker Provider for Python", 2023, Github, https://github.com/manganganath/faker-mobile-bank-clickstream
