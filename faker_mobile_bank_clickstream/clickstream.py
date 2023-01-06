@@ -38,7 +38,7 @@ class ClickstreamProvider(BaseProvider):
         """
         return choice(events)
 
-    def session_clickstream(self, rand_session_max_size: int = 25):
+    def session_clickstream(self, rand_session_max_size: int = 25, min_user_id = 1, max_user_id=100000):
         """
         Generate session clickstream events.
 
@@ -49,7 +49,7 @@ class ClickstreamProvider(BaseProvider):
         # Initialize static session values
         session_events = list()
         session_event_names = list()
-        user_id = _get_user_id()
+        user_id = _get_user_id(start = min_user_id, end=max_user_id)
         user_agent = self.user_agent()
         session_id = _get_session_id()
         ip = _get_ip()
@@ -122,12 +122,12 @@ def _get_session_id():
     ).hexdigest()
 
 
-def _get_user_id(start: int = 100000, end: int = 999999):
+def _get_user_id(start: int = 1, end: int = 100000):
     """
-    Generate random user id from range 0 to 999999. Zero value may identify null user.
+    Generate random user id from range 1 to 100000. Zero value may identify null user.
 
-    :param start: Index start (Default: 0)
-    :param end: Index end (Default: 999999)
+    :param start: Index start (Default: 1)
+    :param end: Index end (Default: 100000)
     :return:
     """
     return randint(start, end)
