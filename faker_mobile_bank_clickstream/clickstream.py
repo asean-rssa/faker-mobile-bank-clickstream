@@ -1,5 +1,4 @@
 import hashlib
-import random
 import string
 from datetime import datetime, timedelta
 from random import choice, randint
@@ -55,7 +54,6 @@ class ClickstreamProvider(BaseProvider):
         ip = _get_ip()
         random_session_size = randint(1, rand_session_max_size)
         incremental_delta_delay = randint(1, 60)
-        first_events = [e for e in event_details if e['dependsOn']==['Login']]
 
         for s in range(random_session_size):
             # Mock time delay between events
@@ -68,24 +66,22 @@ class ClickstreamProvider(BaseProvider):
                     break       
 
             # Fetch a random event
-            event = random.choice(event_details)
+            event = choice(event_details)
             # First event should be Login
             if len(session_events)==0:
-                event['name'] = 'Login'    
-                event['dependsOn'] = []            
-                event['maxCount'] = 1
+                event = [e for e in event_details if e['name']=='Login'][0]
 
-            if len(session_events)==1:
+            if len(session_events)>0:
                 # After Login event, add any of first_events which depends on Login
-                event = random.choice(first_events)
+                event = choice([e for e in event_details if 'Login' in e['dependsOn']])
 
             # Handle event dependencies
             if len(session_events)>1 and len(event['dependsOn'])>0:
                 if session_event_names[-1] not in event['dependsOn']:
                     try:
-                        event = random.choice([e for e in event_details if session_event_names[-1] in e['dependsOn']])
+                        event = choice([e for e in event_details if session_event_names[-1] in e['dependsOn']])
                     except:
-                        event = random.choice(first_events)
+                        event = choice([e for e in event_details if 'Login' in e['dependsOn']])
 
             # Same event shouldn't repeat consecutively 
             if len(session_event_names)>0:
@@ -106,7 +102,7 @@ class ClickstreamProvider(BaseProvider):
                 "event_name": event['name']
             }
             session_events.append(r)
-            session_event_names.append(event['name'])
+            session_event_names.append(r['event_name'])
         return session_events
 
 
@@ -119,7 +115,7 @@ def _get_session_id():
     return hashlib.sha256(
         ('%s%s%s' % (
             datetime.now().strftime("%d/%m/%Y %H:%M:%S.%f"),
-            (''.join(random.choice(string.ascii_lowercase)) for _ in range(10)),
+            (''.join(choice(string.ascii_lowercase)) for _ in range(10)),
             'faker_clickstream'
         )).encode('utf-8')
     ).hexdigest()

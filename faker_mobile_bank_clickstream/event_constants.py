@@ -67,12 +67,12 @@ event_details = [
     {
         "name": "ApplyCreditCard",
         "maxCount": 1,
-        "dependsOn": ["ViewProducts"] 
+        "dependsOn": ["ViewCreditCard"] 
     },
     {
         "name": "ApplyLoan",
         "maxCount": 1,
-        "dependsOn": ["ViewProducts"] 
+        "dependsOn": ["ViewLoan"] 
     },
     {
         "name": "FillCreditCardApplication",
@@ -87,12 +87,12 @@ event_details = [
     {
         "name": "SubmitCreditCardApplication",
         "maxCount": 1,
-        "dependsOn": ["ApplyCreditCard"] 
+        "dependsOn": ["FillCreditCardApplication"] 
     },
     {
         "name": "SubmitLoanApplication",
         "maxCount": 1,
-        "dependsOn": ["ApplyLoan"] 
+        "dependsOn": ["FillLoanApplication"] 
     },
     {
         "name": "FillTransferDetails",

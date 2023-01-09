@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = 'faker_mobile_bank_clickstream',
     packages = ['faker_mobile_bank_clickstream'],
-    version = '1.1.0',  
+    version = '1.1.1',  
     description = 'Mobile Banking Clickstream Faker Provider for Python',
     author = '',
     author_email = '',
