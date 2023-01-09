@@ -55,7 +55,7 @@ class ClickstreamProvider(BaseProvider):
         ip = _get_ip()
         random_session_size = randint(1, rand_session_max_size)
         incremental_delta_delay = randint(1, 60)
-        first_events = [e['name'] for e in event_details if e['dependsOn']==['Login']]
+        first_events = [e for e in event_details if e['dependsOn']==['Login']]
 
         for s in range(random_session_size):
             # Mock time delay between events
@@ -69,20 +69,23 @@ class ClickstreamProvider(BaseProvider):
 
             # Fetch a random event
             event = random.choice(event_details)
-            # Add a mock first_events event
+            # First event should be Login
             if len(session_events)==0:
-                event['name'] = 'Login'            
+                event['name'] = 'Login'    
+                event['dependsOn'] = []            
+                event['maxCount'] = 1
 
-            if event['name'] == 'Login' and len(session_events)>0:
-                # or Login exists in session, discard Login event
-                # Add a mock ViewHome event
-                event['name'] = random.choice(first_events)
+            if len(session_events)==1:
+                # After Login event, add any of first_events which depends on Login
+                event = random.choice(first_events)
 
             # Handle event dependencies
-            if len(event['dependsOn']) and len(session_events)>0:
-                if event['dependsOn']!=session_event_names[-1]:
-                    # Add a mock first_events event
-                    event['name'] = random.choice(first_events)
+            if len(session_events)>1 and len(event['dependsOn'])>0:
+                if session_event_names[-1] not in event['dependsOn']:
+                    try:
+                        event = random.choice([e for e in event_details if session_event_names[-1] in e['dependsOn']])
+                    except:
+                        event = random.choice(first_events)
 
             # Same event shouldn't repeat consecutively 
             if len(session_event_names)>0:
